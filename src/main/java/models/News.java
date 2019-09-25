@@ -1,13 +1,13 @@
 package models;
 
 public class News {
-    private int id;
-    private String heading;
-    private String news_link;
-    private String news_type;
+    public int id;
+    public String heading;
+    public String news_link;
+    public String news_type;
     public static final String TYPE = "general_news";
 
-    public News(String heading, String news_link, String news_type) {
+    public News(String heading, String news_link) {
         this.heading = heading;
         this.news_link = news_link;
         this.news_type = TYPE;
