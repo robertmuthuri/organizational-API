@@ -7,30 +7,25 @@ public class User {
     private String full_name;
     private String position;
     private String role;
-    private String department;
-    private String user_post;
+    private int department_id;
 
-    public User( String full_name, String position,  String role, String department,
- String user_post) {
+    public User( String full_name, String position,  String role, int department_id) {
         this.full_name = full_name;
         this.position = position;
         this.role = role;
-        this.department = department;
-        this.user_post = user_post;
+        this.department_id = department_id;
     }
     public int getId() { return id; }
     public String getFull_name() { return full_name; }
     public String getPosition() { return position; }
     public String getRole() { return role; }
-    public String getDepartment() { return department; }
-    public String getUser_post() { return user_post; }
+    public int getDepartment_id() { return department_id; }
 
     public void setId(int id) { this.id = id; }
     public void setFull_name(String full_name) { this.full_name = full_name; }
     public void setPosition(String position) { this.position = position; }
     public void setRole(String role) { this.role = role; }
-    public void setDepartment(String department) { this.department = department; }
-    public void setUser_post(String user_post) { this.user_post = user_post; }
+    public void setDepartment_id(int department_id) { this.department_id = department_id; }
 
     @Override
     public boolean equals(Object o) {
@@ -41,12 +36,11 @@ public class User {
                 Objects.equals(getFull_name(), user.getFull_name()) &&
                 Objects.equals(getPosition(), user.getPosition()) &&
                 Objects.equals(getRole(), user.getRole()) &&
-                Objects.equals(getDepartment(), user.getDepartment()) &&
-                Objects.equals(getUser_post(), user.getUser_post());
+                Objects.equals(getDepartment_id(), user.getDepartment_id());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFull_name(), getPosition(), getRole(), getDepartment(), getUser_post());
+        return Objects.hash(getId(), getFull_name(), getPosition(), getRole(), getDepartment_id());
     }
 }
