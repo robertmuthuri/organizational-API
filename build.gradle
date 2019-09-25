@@ -23,4 +23,6 @@ dependencies {
     //db dependencies
     compile 'org.sql2o:sql2o:1.5.4'
     compile 'org.postgresql:postgresql:9.4-1201-jdbc41'
+    compile group: 'com.h2database', name: 'h2', version: '1.4.191'
+    compile 'com.google.code.gson:gson:2.5'
 }
