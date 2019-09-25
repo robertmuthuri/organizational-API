@@ -64,7 +64,7 @@ public class DepartmentDAO implements DepartmentInterface {
         }
     }
     @Override
-    public void addDepartmentToDepartmentNews(Department department, DepartmentNews departmentnews){
+    public void addDepartmentToDepartmentNewsArticle(Department department, DepartmentNews departmentnews){
         String sql = "INSERT INTO departments_departmentnews (department_id, departmentnews_id) VALUES (:department_id, :departmentnews_id)";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
@@ -76,7 +76,7 @@ public class DepartmentDAO implements DepartmentInterface {
         }
     }
     @Override
-    public List<DepartmentNews> getAllDepartmentNewsForADepartment(int department_id) {
+    public List<DepartmentNews> getAllDepartmentNewsArticleForADepartment(int department_id) {
 
         ArrayList<DepartmentNews> departmentnews = new ArrayList<>();
 
