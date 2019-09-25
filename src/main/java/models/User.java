@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Objects;
+
 public class User {
     private int id;
     private String full_name;
@@ -29,4 +31,22 @@ public class User {
     public void setRole(String role) { this.role = role; }
     public void setDepartment(String department) { this.department = department; }
     public void setUser_post(String user_post) { this.user_post = user_post; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return getId() == user.getId() &&
+                Objects.equals(getFull_name(), user.getFull_name()) &&
+                Objects.equals(getPosition(), user.getPosition()) &&
+                Objects.equals(getRole(), user.getRole()) &&
+                Objects.equals(getDepartment(), user.getDepartment()) &&
+                Objects.equals(getUser_post(), user.getUser_post());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getFull_name(), getPosition(), getRole(), getDepartment(), getUser_post());
+    }
 }
