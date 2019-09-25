@@ -19,6 +19,14 @@ public class User {
     public int getId() { return id; }
     public String getFull_name() { return full_name; }
     public String getPosition() { return position; }
+    public String getRole() { return role; }
     public String getDepartment() { return department; }
     public String getUser_post() { return user_post; }
+
+    public void setId(int id) { this.id = id; }
+    public void setFull_name(String full_name) { this.full_name = full_name; }
+    public void setPosition(String position) { this.position = position; }
+    public void setRole(String role) { this.role = role; }
+    public void setDepartment(String department) { this.department = department; }
+    public void setUser_post(String user_post) { this.user_post = user_post; }
 }
