@@ -87,9 +87,9 @@ public class DepartmentDAO implements DepartmentInterface {
                     .addParameter("department_id", department_id)
                     .executeAndFetch(Integer.class);
             for (Integer departmentnewsId : allDepartmentNewsIds){
-                String scopedarticleQuery = "SELECT * FROM scoped_articles WHERE id = :departmentnews_id";
+                String departmentNewsQuery = "SELECT * FROM department_news WHERE id = :departmentnews_id";
                 departmentnews.add(
-                        con.createQuery(scopedarticleQuery)
+                        con.createQuery(departmentNewsQuery)
                                 .addParameter("departmentnews_id", departmentnewsId)
                                 .executeAndFetchFirst(DepartmentNews.class));
             } //why are we doing a second sql query - set?
