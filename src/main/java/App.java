@@ -1,9 +1,9 @@
 import com.google.gson.Gson;
-import exceptions.ApiException;
 import models.*;
 import models.DAO.*;
 import org.sql2o.*;
 import static spark.Spark.*;
+import exceptions.ApiException;
 
 public class App {
     public static void main(String[] args) {
@@ -22,22 +22,46 @@ public class App {
         userDAO = new UserDAO(sql2o);
         conn = sql2o.open();
 
-        //
+        //Creates a department
         post("/departments/new", "application/json", (req, res) -> {
             Department department = gson.fromJson(req.body(), Department.class);
             departmentDAO.add(department);
-            res.status(201);;
+            res.status(201);
             return gson.toJson(department);
         });
-        //READ
+        //Reads from departments
         get("/departments", "application/json", (req, res) -> {
             return gson.toJson(departmentDAO.getAll());
         });
-        //
+        //Gets a specific department
         get("/departments/:id", "application/json", (req, res) -> {
             return gson.toJson(departmentDAO.findById(Integer.parseInt(req.params("id"))));
         });
-        //
+        //Post department news
+        post("/departmentnews/new", "application/json", (req, res) -> {
+            DepartmentNews departmentNews  = gson.fromJson(req.body(), DepartmentNews.class);
+            departmentNewsDAO.add(departmentNews);
+            res.status(201);
+            return gson.toJson(departmentNews);
+        });
+
+        // post users
+        post("/users/new", "application/json", (req, res) -> {
+            User user  = gson.fromJson(req.body(), User.class);
+            userDAO.add(user);
+            res.status(201);
+            return gson.toJson(user);
+        });
+        //get user
+        get("/users", "application/json", (req, res) -> {
+            return gson.toJson(userDAO.getAll());
+        });
+        //get user by id
+        get("/users/:id", "application/json", (req, res) -> {
+            return gson.toJson(userDAO.findById(Integer.parseInt(req.params("id"))));
+        });
+
+        //Gets department with its news
         post("/departments/:departmentId/departmentnews/:departmentnewsId", "application/json", (req, res) -> {
             int departmentId = Integer.parseInt(req.params("departmentId"));
             int departmentnewsId = Integer.parseInt(req.params("departmentnewsId"));
@@ -81,29 +105,19 @@ public class App {
                 return gson.toJson(departmentNewsDAO.getAllDepartmentsForADepartmentNewsArticle(departmentNewsId));
             }
         });
-        //
-        post("/users/new", "application/json", (req, res) -> {
-            User user  = gson.fromJson(req.body(), User.class);
-            userDAO.add(user);
-            res.status(201);
-            return gson.toJson(user);
-        });
-        //READ
-        get("/news", "application/json", (req, res) -> {
-            return gson.toJson(newsDAO.getAll());
-        });
-        //
+
+        //post general news
         post("/news/new", "application/json", (req, res) -> {
             News news  = gson.fromJson(req.body(), News.class);
             newsDAO.add(news);
-            res.status(201);;
+            res.status(201);
             return gson.toJson(news);
         });
-        //
+        //Read general news
         get("/news", "application/json", (req, res) -> {
             return gson.toJson(newsDAO.getAll());
         });
-        //
+        // Read  general news by ID
         get("/news/:id", "application/json", (req, res) -> {
             DepartmentNews departmentNewsToFind = departmentNewsDAO.findById(Integer.parseInt(req.params("id")));
             if (departmentNewsToFind == null){
@@ -113,22 +127,22 @@ public class App {
                 return gson.toJson(departmentNewsToFind);
             }
         });
-        //
+        // post department news
         post("/departmentnews/new", "application/json", (req, res) -> {
             DepartmentNews departmentNews  = gson.fromJson(req.body(), DepartmentNews.class);
             departmentNewsDAO.add(departmentNews);
-            res.status(201);;
+            res.status(201);
             return gson.toJson(departmentNews);
         });
-        //
+        // gets department news
         get("/departmentnews", "application/json", (req, res) -> {
             return gson.toJson(departmentNewsDAO.getAll());
         });
-        //
+        // get department news by ID
         get("/departmentnews/:id", "application/json", (req, res) -> {
             return gson.toJson(departmentNewsDAO.findById(Integer.parseInt(req.params("id"))));
         });
-        //
+        // Filter
         after((req, res) ->{
             res.type("application/json");
         });
